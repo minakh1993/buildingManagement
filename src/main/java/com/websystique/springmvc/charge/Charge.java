@@ -15,7 +15,7 @@ import java.util.Date;
 public class Charge {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id")
     private Long id;
 
@@ -75,5 +75,13 @@ public class Charge {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 }

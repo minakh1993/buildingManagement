@@ -33,6 +33,11 @@ public class Block {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    public Block(Integer blockNumber) {
+        this.blockNumber = blockNumber;
+    }
+
+
     public Block() {
     }
 

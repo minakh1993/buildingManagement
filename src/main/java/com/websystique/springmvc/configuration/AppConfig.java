@@ -6,15 +6,18 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 @Configuration
@@ -38,6 +41,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/js/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/css/");
 		registry.addResourceHandler("/avatar/**").addResourceLocations("/WEB-INF/avatar/");
+		registry.addResourceHandler("/vendor/**").addResourceLocations("/WEB-INF/vendor/");
+		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/fonts/");
+
+
 		//registry.addResourceHandler("/views/**").addResourceLocations("/WEB-INF/views/");
 	}
 
@@ -46,7 +53,15 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	public MessageSource messageSource() {
 	    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 	    messageSource.setBasename("messages");
-	    return messageSource;
+		messageSource.setDefaultEncoding("UTF-8");
+		return messageSource;
+	}
+
+	@Bean
+	public LocaleResolver localeResolver(){
+		SessionLocaleResolver  resolver = new SessionLocaleResolver();
+		resolver.setDefaultLocale(new Locale("fa"));
+		return resolver;
 	}
 
 

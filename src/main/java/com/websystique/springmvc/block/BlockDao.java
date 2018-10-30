@@ -2,6 +2,7 @@ package com.websystique.springmvc.block;
 
 import com.websystique.springmvc.User.Employee;
 import com.websystique.springmvc.dao.AbstractDao;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,14 +13,10 @@ import java.util.List;
  */
 
 @Repository("blockDao")
-public class BlockDao extends AbstractDao<String, Employee>{
-
-
-    public Block findById(Long id) {
-        return null;
-    }
+public class BlockDao extends AbstractDao<Long, Block>{
 
     public void saveBlock(Block employee) {
+
 
     }
 
@@ -28,6 +25,8 @@ public class BlockDao extends AbstractDao<String, Employee>{
     }
 
     public List<Block> findAllBlocks() {
-        return null;
+
+        Query criteria = getSession().createQuery("from Block" );
+        return criteria.list();
     }
 }

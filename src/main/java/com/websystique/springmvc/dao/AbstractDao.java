@@ -6,7 +6,9 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public abstract class AbstractDao<PK extends Serializable, T> {
 	
 	private final Class<T> persistentClass;
@@ -34,7 +36,10 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 
 	public void save(T entity) {
 		getSession().save(entity);
+	}
 
+	public void update(T entity) {
+		getSession().update(entity);
 	}
 
 	public void delete(T entity) {

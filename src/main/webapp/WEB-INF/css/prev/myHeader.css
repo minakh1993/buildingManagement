@@ -1,0 +1,20 @@
+.top-header{
+    background: #23b7e5;
+    height: 65px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.top-header a {
+    color: #fff;
+    padding-left: 20px;
+    text-decoration:none
+}
+
+.left-items {
+    padding-right: 5px;
+    padding-left: 0;
+    direction: ltr;
+    float: left;
+    color: #fff;
+}
